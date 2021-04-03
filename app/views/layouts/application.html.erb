@@ -7,9 +7,116 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bulma.min.css">
+    
+   
+
+     <style type="text/css" media="screen">
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+ 
+      #wrapper {
+        flex: 1;
+      }
+    </style>
   </head>
 
   <body>
+
+  <div id="wrapper">
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+         
+          <%= link_to 'Home',  root_path, class: "navbar-item" %>
+
+           <%= link_to 'Contents List',  contents_path, class: "navbar-item" %>
+
+           <%= link_to 'Create New Content',  new_content_path, class: "navbar-item" %>
+        
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Filter by Content Type
+            </a>
+
+            <div class="navbar-dropdown">
+              <%= link_to "Blog Post", contents_path(:search_param => "Blog Post"), class: "navbar-item" %>             
+              <%= link_to "Movies", contents_path(:search_param => "Movie"), class: "navbar-item" %> 
+              <%= link_to "Recipes", contents_path(:search_param => "Recipe"), class: "navbar-item" %> 
+            </div>
+          </div>
+
+         
+        </div>
+
+        <div class="navbar-end">
+
+         <div class="field is-grouped">
+            <p class="control is-expanded">
+            <div class="navbar-item">
+              <%= form_tag(contents_path, method: :get) do %>
+               <%= search_field_tag :search_param2, params[:search_param2], class: 'input', id: "autocomplete", placeholder: "Enter search term..." %>
+               </div>
+
+              <div class="control navbar-item">
+               
+                <%= submit_tag 'Search', class: "button is-info" %>
+                <% end %>
+              </div>
+            </p>
+          </div>
+          <div class="navbar-item">
+            <div class="buttons">
+               <% if (!user_signed_in?) %>
+                <%= link_to "Sign Up",
+                    new_user_registration_path, 
+                    class: "button is-primary" 
+                %>
+                <%= link_to "Login", 
+                    new_user_session_path, 
+                    class: "button is-light" 
+                %>
+              <% else %>
+                <%= link_to "Log out", 
+                    destroy_user_session_path, 
+                    method: :delete, 
+                    class: "button is-light" 
+                %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
+    </div>
+    <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>10xBetter</strong> by <a href="https://localhost:3000">Andrew Farrow</a>. 
+    </p>
+  </div>
+</footer>
   </body>
+
 </html>

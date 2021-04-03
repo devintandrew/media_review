@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content_type: MyString
+  title: MyString
+  content_review_notes: MyText
+  rating: 
+  movie_link: MyString
+  release_date: 2021-03-27
+
+two:
+  content_type: MyString
+  title: MyString
+  content_review_notes: MyText
+  rating: 
+  movie_link: MyString
+  release_date: 2021-03-27

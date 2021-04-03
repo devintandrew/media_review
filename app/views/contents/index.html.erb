@@ -1,0 +1,47 @@
+
+
+<div class="row">
+    <div class="col s12">
+        <h3 class="left-align"> Contents List</h3>
+    </div>
+</div>
+
+
+
+<section class="container">
+	<div class="columns">
+
+<div class="column is-9">
+	<div class="box content">
+
+<div class="row">
+    <div class="col s12 m6">
+        <table class="table is-striped is-hoverable">
+            <thead>
+            <tr>
+                <th>Content Type</th>
+                <th>Title</th>
+                <th>Created Date</th>
+                <th colspan="1"></th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @contents.each do |c| %>
+            <tr>
+                <td><%= c.content_type %></td>
+                <td><%= link_to c.title, content_path(c) %></td>
+                <td><%= c.created_at %></td>
+                <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+</div>
+</div>

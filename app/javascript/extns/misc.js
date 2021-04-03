@@ -1,0 +1,1 @@
+import 'vanillajs-datepicker/js/Datepicker.js';

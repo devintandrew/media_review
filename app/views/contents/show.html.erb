@@ -1,0 +1,43 @@
+
+<p id="notice"><%= notice %></p>
+<section class="container">
+	<div class="columns">
+
+<div class="column is-9">
+	<div class="box content">
+  <p>
+    <strong>Content type:</strong>
+    <%= @content.content_type %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= @content.title %>
+  </p>
+
+  <p>
+    <strong>Content review notes:</strong>
+    <%= @content.content_review_notes %>
+  </p>
+
+  <p>
+    <strong>Rating:</strong>
+    <%= @content.rating %>
+  </p>
+
+  <p>
+    <strong>Movie link:</strong>
+    <%= @content.movie_link %>
+  </p>
+
+  <p>
+    <strong>Release date:</strong>
+    <%= @content.release_date %>
+  </p>
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>
+</div>
+</div>
+</div>
+</section>

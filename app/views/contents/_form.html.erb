@@ -1,0 +1,146 @@
+<section class="container">
+	<div class="columns">
+
+<div class="column is-9">
+	<div class="box content">
+
+<%= form_with(model: content, local: true) do |form| %>
+  <% if content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+        <% content.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="column is-half is-offset-one-quarter">
+  <div class="field">
+    <%= form.label :content_type %>
+    <div class="control">
+       <%= form.select :content_type, ["Blog Post", "Movie", "Recipe"], {}, {:id => "select_content_type"}  %>
+    </div>
+  </div>
+</div>
+<div class="column is-half is-offset-one-quarter">
+  <div class="field">
+    <%= form.label :title %>
+    <div class="control">
+      <%= form.text_field :title, class: "input", placeholder: "Enter Title" %>
+    </div>
+  </div>
+</div>
+<div class="column is-half is-offset-one-quarter">
+  <div class="field">
+    <%= form.label :content_review_notes %>
+      <div class="control">
+        <%= form.text_area :content_review_notes, class: "input", placeholder: "Enter content review notes" %>
+      </div>
+  </div>
+</div>
+<div class="hidden_option_movie">
+<div class="column is-half is-offset-one-quarter">
+  <div class="field">
+    <%= form.label :rating %>
+      <div class="control">
+        <%= form.select :rating, [1,2,3,4,5], {}, {:id => "select_rating"} %>
+      </div>
+  </div>
+</div>
+<div class="column is-half is-offset-one-quarter">
+  <div class="field">
+    <%= form.label :movie_link %>
+      <div class="control">
+        <%= form.text_field :movie_link, class: "input", placeholder: "Enter Movie link" %>
+      </div>
+  </div>
+</div>
+<div class="column is-half is-offset-one-quarter">
+  <div class="field">
+    <%= form.label :release_date %>
+      <div class="control">
+        <%= form.text_field :release_date, class: "input date datepicker-input", name: "datepicker1" %>
+     </div>
+  </div>
+</div>
+</div>
+ <div class="hidden_option_recipe">
+ <div class="column is-half is-offset-one-quarter">
+    <div class="field">
+      <%= form.label :ingredients %>
+      <div class="control">
+      <%= form.text_field :ingredients, as: :array, class: "input" %>
+      </div>
+    </div>
+    </div>
+    <div class="column is-half is-offset-one-quarter">
+    <div class="field">
+      <%= form.label :steps %>
+      <div class="control">
+      <%= form.text_field :steps, as: :array, class: "input"  %>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<div class="column is-half is-offset-one-quarter">
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+</div>
+<% end %>
+
+</div>
+</div>
+</div>
+</section>
+
+<script>
+  var elem = document.querySelector('input[name="datepicker1"]');
+  var datepicker = new Datepicker(elem, {
+                        // ...options
+                      }); 
+  
+function initialise_fields(){
+  	document.querySelector(".hidden_option_recipe").style.display = 'none';
+    document.querySelector(".hidden_option_movie").style.display = 'none';
+}
+
+function set_fields(){
+  if (document.getElementById('select_content_type').value == 'Movie'){
+
+		document.querySelector(".hidden_option_movie").style.display = 'block';
+	  }
+	  else {
+			document.querySelector(".hidden_option_movie").style.display = 'none';
+	  }
+
+
+	if (document.getElementById('select_content_type').value == 'Recipe'){
+		document.querySelector(".hidden_option_recipe").style.display = 'block';
+	  }
+	  else  {
+		document.querySelector(".hidden_option_recipe").style.display = 'none';
+	  }
+  if (document.getElementById('select_content_type').value == 'Blog Post' || document.getElementById('select_content_type').value == ''){
+		document.querySelector(".hidden_option_recipe").style.display = 'none';
+    document.querySelector(".hidden_option_movie").style.display = 'none';
+	  }
+	  
+}
+
+
+var select_change = document.querySelector("#select_content_type");
+
+select_change.addEventListener('change', (e) =>  {
+  console.log(document.getElementById('select_content_type').value);
+    set_fields();
+	});
+
+window.onload=initialise_fields;
+     
+                
+</script>
